@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Jiu-Jitsu Belt System - PDF Version</title>
+    <style>
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            body {
+                margin: 0;
+                padding: 20px;
+                background: white !important;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+            
+            .no-break {
+                page-break-inside: avoid;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 210mm; /* A4 width */
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .belt-section {
+            margin-bottom: 40px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 25px;
+            background: #fafafa;
+        }
+
+        .belt-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .belt-stripe {
+            width: 150px;
+            height: 25px;
+            margin-right: 15px;
+            border-radius: 3px;
+            position: relative;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,0.1) 2px,
+                    rgba(0,0,0,0.1) 3px
+                );
+        }
+
+        .belt-stripe::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            filter: brightness(0.8);
+        }
+
+        .belt-stripe::after {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 50%;
+            box-shadow: 
+                12px 0 rgba(0,0,0,0.4),
+                24px 0 rgba(0,0,0,0.4),
+                36px 0 rgba(0,0,0,0.4),
+                48px 0 rgba(0,0,0,0.4);
+        }
+
+        .white-belt { 
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+        }
+        .white-belt::before { border-left-color: #e9ecef; }
+
+        .blue-belt { 
+            background: linear-gradient(135deg, #0066cc 0%, #004499 50%, #003366 100%);
+            border: 1px solid #002244;
+        }
+        .blue-belt::before { border-left-color: #003366; }
+
+        .purple-belt { 
+            background: linear-gradient(135deg, #8a2be2 0%, #6a1b9a 50%, #4a148c 100%);
+            border: 1px solid #3a1073;
+        }
+        .purple-belt::before { border-left-color: #4a148c; }
+
+        .brown-belt { 
+            background: linear-gradient(135deg, #8b4513 0%, #654321 50%, #3e2723 100%);
+            border: 1px solid #2e1a17;
+        }
+        .brown-belt::before { border-left-color: #3e2723; }
+
+        .black-belt { 
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #000000 100%);
+            border: 1px solid #000000;
+        }
+        .black-belt::before { border-left-color: #000000; }
+
+        .belt-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            flex-grow: 1;
+        }
+
+        .belt-subtitle {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .milestone, .skills, .belt-test {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .milestone {
+            border-left-color: #28a745;
+        }
+
+        .skills {
+            border-left-color: #17a2b8;
+        }
+
+        .belt-test {
+            border-left-color: #ffc107;
+            grid-column: 1 / -1;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .milestone .section-title { color: #28a745; }
+        .skills .section-title { color: #17a2b8; }
+        .belt-test .section-title { color: #856404; }
+
+        .skills ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skills li {
+            padding: 3px 0;
+            position: relative;
+            padding-left: 15px;
+            font-size: 0.95rem;
+        }
+
+        .skills li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .stripe-system {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 40px 0;
+            text-align: center;
+            border: 2px solid #1976d2;
+        }
+
+        .stripe-system h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .stripe-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .stripe {
+            width: 40px;
+            height: 8px;
+            background: #ffd700;
+            border-radius: 4px;
+            border: 1px solid #f39c12;
+        }
+
+        .stripe-details {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stripe-details p {
+            margin: 8px 0;
+            padding: 5px 0;
+        }
+
+        .motivation-quote {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #2c3e50;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            .belt-section {
+                page-break-inside: avoid;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🥋 YouTube Jiu-Jitsu Belt System 🎬</h1>
+        <p>Master the platform one belt at a time</p>
+    </div>
+
+    <!-- White Belt -->
+    <div class="belt-section no-break">
+        <div class="belt-header">
+            <div class="belt-stripe white-belt"></div>
+            <h2 class="belt-title">White Belt</h2>
+        </div>
+        <p class="belt-subtitle">"First Steps on the Mat"</p>
+        
+        <div class="content-grid">
+            <div class="milestone">
+                <div class="section-title">Milestone:</div>
+                <p>0-1,000 subscribers<br>10+ videos published</p>
+            </div>
+
+            <div class="skills">
+                <div class="section-title">Skills Mastered:</div>
+                <ul>
+                    <li>Consistent upload schedule (weekly/bi-weekly)</li>
+                    <li>Basic video editing and audio quality</li>
+                    <li>Understanding your niche and target audience</li>
+                    <li>Creating thumbnails and titles</li>
+                    <li>Learning YouTube Studio basics</li>
+                </ul>
+            </div>
+
+            <div class="belt-test">
+                <div class="section-title">Belt Test:</div>
+                <p>Successfully maintain uploads for 3 months straight</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blue Belt -->
+    <div class="belt-section no-break">
+        <div class="belt-header">
+            <div class="belt-stripe blue-belt"></div>
+            <h2 class="belt-title">Blue Belt</h2>
+        </div>
+        <p class="belt-subtitle">"Building Your Foundation"</p>
+        
+        <div class="content-grid">
+            <div class="milestone">
+                <div class="section-title">Milestone:</div>
+                <p>1,000-10,000 subscribers<br>Monetization enabled</p>
+            </div>
+
+            <div class="skills">
+                <div class="section-title">Skills Mastered:</div>
+                <ul>
+                    <li>Community engagement (responding to comments consistently)</li>
+                    <li>Basic SEO and keyword research</li>
+                    <li>Improved production value (lighting, framing, editing flow)</li>
+                    <li>First viral video (relative to your size)</li>
+                    <li>Building email list or secondary platform presence</li>
+                </ul>
+            </div>
+
+            <div class="belt-test">
+                <div class="section-title">Belt Test:</div>
+                <p>Achieve 1,000 true fans who regularly engage with your content</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purple Belt -->
+    <div class="belt-section no-break">
+        <div class="belt-header">
+            <div class="belt-stripe purple-belt"></div>
+            <h2 class="belt-title">Purple Belt</h2>
+        </div>
+        <p class="belt-subtitle">"Finding Your Flow"</p>
+        
+        <div class="content-grid">
+            <div class="milestone">
+                <div class="section-title">Milestone:</div>
+                <p>10,000-100,000 subscribers<br>Sustainable income</p>
+            </div>
+
+            <div class="skills">
+                <div class="section-title">Skills Mastered:</div>
+                <ul>
+                    <li>Advanced analytics interpretation and strategy pivots</li>
+                    <li>Collaboration with other creators</li>
+                    <li>Diversified content formats (shorts, long-form, live streams)</li>
+                    <li>Brand partnerships and sponsorship deals</li>
+                    <li>Community building (Discord, membership, etc.)</li>
+                </ul>
+            </div>
+
+            <div class="belt-test">
+                <div class="section-title">Belt Test:</div>
+                <p>Create a content series that consistently performs well over 6+ episodes</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Brown Belt -->
+    <div class="belt-section no-break">
+        <div class="belt-header">
+            <div class="belt-stripe brown-belt"></div>
+            <h2 class="belt-title">Brown Belt</h2>
+        </div>
+        <p class="belt-subtitle">"Mastering Your Craft"</p>
+        
+        <div class="content-grid">
+            <div class="milestone">
+                <div class="section-title">Milestone:</div>
+                <p>100,000-1,000,000 subscribers<br>Multiple revenue streams</p>
+            </div>
+
+            <div class="skills">
+                <div class="section-title">Skills Mastered:</div>
+                <ul>
+                    <li>Thought leadership in your niche</li>
+                    <li>Team building (editors, thumbnail designers, assistants)</li>
+                    <li>Advanced business strategy (products, courses, consulting)</li>
+                    <li>Cross-platform dominance (TikTok, Instagram, podcast, etc.)</li>
+                    <li>Mentoring other creators</li>
+                </ul>
+            </div>
+
+            <div class="belt-test">
+                <div class="section-title">Belt Test:</div>
+                <p>Launch a successful product/service that serves your audience beyond YouTube</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Black Belt -->
+    <div class="belt-section no-break">
+        <div class="belt-header">
+            <div class="belt-stripe black-belt"></div>
+            <h2 class="belt-title">Black Belt</h2>
+        </div>
+        <p class="belt-subtitle">"Master of the Platform"</p>
+        
+        <div class="content-grid">
+            <div class="milestone">
+                <div class="section-title">Milestone:</div>
+                <p>1,000,000+ subscribers<br>Significant cultural impact</p>
+            </div>
+
+            <div class="skills">
+                <div class="section-title">Skills Mastered:</div>
+                <ul>
+                    <li>Industry influence and trend-setting</li>
+                    <li>Building lasting business empire around your brand</li>
+                    <li>Creating systems that work without your constant input</li>
+                    <li>Teaching and elevating other creators</li>
+                    <li>Adapting to platform changes and staying relevant long-term</li>
+                </ul>
+            </div>
+
+            <div class="belt-test">
+                <div class="section-title">Black Belt Achievement:</div>
+                <p>Your content has meaningfully impacted thousands of lives and created lasting value beyond entertainment</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="stripe-system no-break">
+        <h3>🏆 Stripe System (Between Belts)</h3>
+        <p>Each belt has 4 stripes to mark progression:</p>
+        
+        <div class="stripe-indicators">
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+        </div>
+        
+        <div class="stripe-details">
+            <p><strong>1st Stripe:</strong> Hit the subscriber milestone</p>
+            <p><strong>2nd Stripe:</strong> Master 2/5 key skills</p>
+            <p><strong>3rd Stripe:</strong> Master 4/5 key skills</p>
+            <p><strong>4th Stripe:</strong> Complete the belt test + mentor someone at a lower belt</p>
+        </div>
+    </div>
+
+    <div class="motivation-quote no-break">
+        <p>"Like jiu-jitsu, some will progress faster than others, and there's honor in every belt. The goal isn't just the destination—it's becoming the type of creator who deserves that belt through consistent practice, learning, and serving your audience. Each belt represents not just numbers, but the development of character, skill, and impact. Keep rolling! 🎬🥋"</p>
+    </div>
+
+    <div class="footer">
+        <p>YouTube Jiu-Jitsu Belt System - Your roadmap to content mastery</p>
+    </div>
+</body>
+</html>
