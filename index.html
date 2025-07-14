@@ -3,30 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Jiu-Jitsu Belt System - PDF Version</title>
+    <title>YouTube Jiu-Jitsu Belt System | Master Content Creation</title>
+    <meta name="description" content="A martial arts-inspired progression system for YouTube creators. Track your journey from White Belt beginner to Black Belt master with interactive guides and resources.">
+    <meta name="keywords" content="YouTube, content creation, creator journey, progression system, jiu-jitsu belts">
     <style>
-        @media print {
-            * {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            
-            body {
-                margin: 0;
-                padding: 20px;
-                background: white !important;
-            }
-            
-            .page-break {
-                page-break-before: always;
-            }
-            
-            .no-break {
-                page-break-inside: avoid;
-            }
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -34,94 +14,157 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 210mm; /* A4 width */
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
 
         .header {
             text-align: center;
             margin-bottom: 40px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 20px;
+            color: white;
+            padding: 40px 0;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
         }
 
         .header p {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            font-style: italic;
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
         }
 
-        .belt-section {
+        .progress-overview {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
             margin-bottom: 40px;
-            border: 2px solid #ecf0f1;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .overall-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
             border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            width: 0%;
+            transition: width 0.8s ease;
+            border-radius: 10px;
+        }
+
+        .belt-grid {
+            display: grid;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .belt-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
             padding: 25px;
-            background: #fafafa;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .belt-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+        }
+
+        .belt-card.expanded {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
         }
 
         .belt-header {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            position: relative;
         }
 
         .belt-stripe {
-            width: 150px;
-            height: 25px;
-            margin-right: 15px;
-            border-radius: 3px;
+            width: 120px;
+            height: 30px;
+            margin-right: 20px;
+            border-radius: 5px;
             position: relative;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 2px 0 rgba(255,255,255,0.3);
             background-image: 
                 repeating-linear-gradient(
                     90deg,
                     transparent,
-                    transparent 2px,
-                    rgba(0,0,0,0.1) 2px,
-                    rgba(0,0,0,0.1) 3px
+                    transparent 3px,
+                    rgba(0,0,0,0.1) 3px,
+                    rgba(0,0,0,0.1) 4px
                 );
         }
 
         .belt-stripe::before {
             content: '';
             position: absolute;
-            right: -8px;
+            right: -10px;
             top: 50%;
             transform: translateY(-50%);
             width: 0;
             height: 0;
-            border-left: 8px solid;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
+            border-left: 10px solid;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
             filter: brightness(0.8);
         }
 
         .belt-stripe::after {
             content: '';
             position: absolute;
-            left: 10px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background: rgba(0,0,0,0.4);
             border-radius: 50%;
             box-shadow: 
-                12px 0 rgba(0,0,0,0.4),
-                24px 0 rgba(0,0,0,0.4),
-                36px 0 rgba(0,0,0,0.4),
-                48px 0 rgba(0,0,0,0.4);
+                15px 0 rgba(0,0,0,0.4),
+                30px 0 rgba(0,0,0,0.4),
+                45px 0 rgba(0,0,0,0.4);
         }
 
         .white-belt { 
@@ -156,9 +199,19 @@
 
         .belt-title {
             font-size: 1.8rem;
-            font-weight: bold;
+            font-weight: 700;
             color: #2c3e50;
             flex-grow: 1;
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            transition: transform 0.3s ease;
+        }
+
+        .belt-card.expanded .expand-icon {
+            transform: rotate(180deg);
         }
 
         .belt-subtitle {
@@ -168,328 +221,898 @@
             font-size: 1.1rem;
         }
 
-        .content-grid {
+        .belt-summary {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 20px;
             margin-bottom: 20px;
         }
 
-        .milestone, .skills, .belt-test {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
+        .milestone-summary, .progress-summary {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #28a745;
         }
 
-        .milestone {
-            border-left-color: #28a745;
-        }
-
-        .skills {
+        .progress-summary {
             border-left-color: #17a2b8;
         }
 
-        .belt-test {
-            border-left-color: #ffc107;
-            grid-column: 1 / -1;
+        .summary-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
         }
 
-        .section-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+        .belt-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
         }
 
-        .milestone .section-title { color: #28a745; }
-        .skills .section-title { color: #17a2b8; }
-        .belt-test .section-title { color: #856404; }
+        .belt-card.expanded .belt-details {
+            max-height: 2000px;
+        }
 
-        .skills ul {
+        .details-content {
+            padding-top: 25px;
+            border-top: 2px solid #ecf0f1;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ecf0f1;
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #7f8c8d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: #2c3e50;
+            border-bottom-color: #3498db;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .skills-checklist {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
         }
 
-        .skills li {
-            padding: 3px 0;
+        .skill-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .skill-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #28a745;
+            border-radius: 4px;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
-            padding-left: 15px;
-            font-size: 0.95rem;
         }
 
-        .skills li::before {
-            content: "✓";
+        .skill-checkbox.checked {
+            background: #28a745;
+        }
+
+        .skill-checkbox.checked::after {
+            content: '✓';
             position: absolute;
-            left: 0;
-            color: #28a745;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
             font-weight: bold;
+            font-size: 14px;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .resource-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.2s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateX(5px);
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .resource-description {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .achievement-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #8b4513;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 10px 5px;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
         }
 
         .stripe-system {
-            background: #e3f2fd;
-            border-radius: 10px;
-            padding: 25px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
             margin: 40px 0;
             text-align: center;
-            border: 2px solid #1976d2;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
         .stripe-system h3 {
-            color: #1976d2;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
         }
 
         .stripe-indicators {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
+            gap: 15px;
+            margin: 25px 0;
         }
 
         .stripe {
-            width: 40px;
-            height: 8px;
-            background: #ffd700;
-            border-radius: 4px;
+            width: 50px;
+            height: 12px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border-radius: 6px;
             border: 1px solid #f39c12;
-        }
-
-        .stripe-details {
-            text-align: left;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .stripe-details p {
-            margin: 8px 0;
-            padding: 5px 0;
+            box-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
         }
 
         .motivation-quote {
-            background: #f8f9fa;
-            border: 2px solid #667eea;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
             text-align: center;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 40px;
-            font-size: 1.1rem;
+            padding: 40px;
+            margin: 40px 0;
+            font-size: 1.2rem;
             font-style: italic;
             color: #2c3e50;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            line-height: 1.6;
         }
 
         .footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #ecf0f1;
-            color: #7f8c8d;
+            margin-top: 60px;
+            padding: 30px 0;
+            color: rgba(255,255,255,0.9);
             font-size: 0.9rem;
         }
 
-        @media print {
-            .belt-section {
-                page-break-inside: avoid;
+        .github-link {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
             }
             
-            .content-grid {
+            .belt-summary {
                 grid-template-columns: 1fr;
-                gap: 15px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .belt-stripe {
+                width: 100px;
+                height: 25px;
+            }
+            
+            .stripe-indicators {
+                flex-wrap: wrap;
+                gap: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🥋 YouTube Jiu-Jitsu Belt System 🎬</h1>
-        <p>Master the platform one belt at a time</p>
+    <div class="container">
+        <div class="header">
+            <h1>🥋 YouTube Jiu-Jitsu Belt System 🎬</h1>
+            <p>Master the platform one belt at a time - Your interactive roadmap to content creation mastery</p>
+            
+            <div class="progress-overview">
+                <div class="overall-progress">
+                    <span class="progress-label">Overall Progress:</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overallProgress"></div>
+                    </div>
+                    <span id="progressText">0%</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #7f8c8d; margin-top: 10px;">
+                    Click on any belt to explore detailed guides, resources, and track your progress
+                </p>
+            </div>
+        </div>
+
+        <div class="belt-grid">
+            <!-- White Belt -->
+            <div class="belt-card" data-belt="white">
+                <div class="belt-header">
+                    <div class="belt-stripe white-belt"></div>
+                    <h2 class="belt-title">White Belt</h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <p class="belt-subtitle">"First Steps on the Mat"</p>
+                
+                <div class="belt-summary">
+                    <div class="milestone-summary">
+                        <div class="summary-title">🎯 Target</div>
+                        <p>0-1,000 subscribers<br>10+ videos published</p>
+                    </div>
+                    <div class="progress-summary">
+                        <div class="summary-title">📈 Focus</div>
+                        <p>Foundation building<br>Consistency & basics</p>
+                    </div>
+                </div>
+
+                <div class="belt-details">
+                    <div class="details-content">
+                        <div class="tabs">
+                            <button class="tab active" onclick="showTab(this, 'skills-white')">Skills</button>
+                            <button class="tab" onclick="showTab(this, 'resources-white')">Resources</button>
+                            <button class="tab" onclick="showTab(this, 'roadmap-white')">Roadmap</button>
+                        </div>
+
+                        <div id="skills-white" class="tab-content active">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Skills to Master</h4>
+                            <ul class="skills-checklist">
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Establish consistent upload schedule (weekly/bi-weekly)</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Master basic video editing and ensure good audio quality</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Define your niche and understand your target audience</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Create compelling thumbnails and titles</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Learn YouTube Studio basics and analytics</span>
+                                </li>
+                            </ul>
+                            <div style="margin-top: 20px;">
+                                <span class="achievement-badge">🎬 First Upload</span>
+                                <span class="achievement-badge">📅 30-Day Streak</span>
+                                <span class="achievement-badge">🎯 Niche Defined</span>
+                            </div>
+                        </div>
+
+                        <div id="resources-white" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🛠️ Essential Resources</h4>
+                            <div class="resource-grid">
+                                <div class="resource-card">
+                                    <div class="resource-title">📱 Mobile Editing</div>
+                                    <div class="resource-description">Start with free apps like CapCut, InShot, or iMovie for basic editing on your phone.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">🎨 Thumbnail Tools</div>
+                                    <div class="resource-description">Canva, Figma, or Photoshop for creating eye-catching thumbnails that get clicks.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">🎤 Audio Setup</div>
+                                    <div class="resource-description">Invest in a basic USB microphone like Blue Yeti or Audio-Technica ATR2100x.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">📊 YouTube Studio</div>
+                                    <div class="resource-description">Master the Creator Studio dashboard, analytics, and community tab features.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="roadmap-white" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🗺️ 90-Day Roadmap</h4>
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                                <p><strong>Month 1:</strong> Focus on consistency. Upload weekly, even if quality isn't perfect. Learn your equipment.</p>
+                                <p style="margin: 15px 0;"><strong>Month 2:</strong> Improve production quality. Study successful channels in your niche. Engage with your audience.</p>
+                                <p><strong>Month 3:</strong> Analyze your best-performing videos. Double down on what works. Prepare for Blue Belt skills.</p>
+                            </div>
+                            <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                <strong>🏆 Belt Test:</strong> Successfully maintain uploads for 3 months straight with measurable improvement in quality and engagement.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blue Belt -->
+            <div class="belt-card" data-belt="blue">
+                <div class="belt-header">
+                    <div class="belt-stripe blue-belt"></div>
+                    <h2 class="belt-title">Blue Belt</h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <p class="belt-subtitle">"Building Your Foundation"</p>
+                
+                <div class="belt-summary">
+                    <div class="milestone-summary">
+                        <div class="summary-title">🎯 Target</div>
+                        <p>1,000-10,000 subscribers<br>Monetization enabled</p>
+                    </div>
+                    <div class="progress-summary">
+                        <div class="summary-title">📈 Focus</div>
+                        <p>Community growth<br>Content optimization</p>
+                    </div>
+                </div>
+
+                <div class="belt-details">
+                    <div class="details-content">
+                        <div class="tabs">
+                            <button class="tab active" onclick="showTab(this, 'skills-blue')">Skills</button>
+                            <button class="tab" onclick="showTab(this, 'resources-blue')">Resources</button>
+                            <button class="tab" onclick="showTab(this, 'roadmap-blue')">Roadmap</button>
+                        </div>
+
+                        <div id="skills-blue" class="tab-content active">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Skills to Master</h4>
+                            <ul class="skills-checklist">
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Master community engagement and respond to all comments</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Learn basic SEO and keyword research for video optimization</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Significantly improve production value (lighting, framing, editing)</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Create your first viral video (relative to your channel size)</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Build email list or presence on secondary platforms</span>
+                                </li>
+                            </ul>
+                            <div style="margin-top: 20px;">
+                                <span class="achievement-badge">💰 Monetized</span>
+                                <span class="achievement-badge">🔥 First Viral</span>
+                                <span class="achievement-badge">👥 1K Community</span>
+                            </div>
+                        </div>
+
+                        <div id="resources-blue" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🛠️ Growth Resources</h4>
+                            <div class="resource-grid">
+                                <div class="resource-card">
+                                    <div class="resource-title">🔍 SEO Tools</div>
+                                    <div class="resource-description">TubeBuddy, VidIQ, or Keyword Tool for optimizing titles and tags.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">💡 Lighting</div>
+                                    <div class="resource-description">Softbox lights or ring lights for professional-looking videos.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">📧 Email Marketing</div>
+                                    <div class="resource-description">Mailchimp, ConvertKit, or Beehiiv for building your email audience.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">📱 Social Media</div>
+                                    <div class="resource-description">Cross-promote on Instagram, TikTok, Twitter to build multi-platform presence.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="roadmap-blue" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🗺️ Growth Strategy</h4>
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                                <p><strong>Optimization Phase:</strong> Use analytics to identify your best content. Create more of what works.</p>
+                                <p style="margin: 15px 0;"><strong>Community Building:</strong> Respond to every comment. Create content that encourages engagement.</p>
+                                <p><strong>Expansion:</strong> Start building presence on other platforms. Begin email list collection.</p>
+                            </div>
+                            <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                <strong>🏆 Belt Test:</strong> Achieve 1,000 true fans who regularly engage with your content and enable monetization.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Purple Belt -->
+            <div class="belt-card" data-belt="purple">
+                <div class="belt-header">
+                    <div class="belt-stripe purple-belt"></div>
+                    <h2 class="belt-title">Purple Belt</h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <p class="belt-subtitle">"Finding Your Flow"</p>
+                
+                <div class="belt-summary">
+                    <div class="milestone-summary">
+                        <div class="summary-title">🎯 Target</div>
+                        <p>10,000-100,000 subscribers<br>Sustainable income</p>
+                    </div>
+                    <div class="progress-summary">
+                        <div class="summary-title">📈 Focus</div>
+                        <p>Advanced strategy<br>Business development</p>
+                    </div>
+                </div>
+
+                <div class="belt-details">
+                    <div class="details-content">
+                        <div class="tabs">
+                            <button class="tab active" onclick="showTab(this, 'skills-purple')">Skills</button>
+                            <button class="tab" onclick="showTab(this, 'resources-purple')">Resources</button>
+                            <button class="tab" onclick="showTab(this, 'roadmap-purple')">Roadmap</button>
+                        </div>
+
+                        <div id="skills-purple" class="tab-content active">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Advanced Skills</h4>
+                            <ul class="skills-checklist">
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Master advanced analytics interpretation and strategic pivots</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Build successful collaborations with other creators</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Diversify content formats (shorts, long-form, live streams)</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Secure brand partnerships and sponsorship deals</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Build thriving community (Discord, membership, etc.)</span>
+                                </li>
+                            </ul>
+                            <div style="margin-top: 20px;">
+                                <span class="achievement-badge">🤝 First Collab</span>
+                                <span class="achievement-badge">💼 Brand Deal</span>
+                                <span class="achievement-badge">🏘️ Community Built</span>
+                            </div>
+                        </div>
+
+                        <div id="resources-purple" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🛠️ Professional Tools</h4>
+                            <div class="resource-grid">
+                                <div class="resource-card">
+                                    <div class="resource-title">📊 Advanced Analytics</div>
+                                    <div class="resource-description">Google Analytics, Social Blade, and advanced YouTube Analytics features.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">🎥 Professional Editing</div>
+                                    <div class="resource-description">Adobe Premiere Pro, Final Cut Pro, or DaVinci Resolve for advanced editing.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">💰 Sponsorship Platforms</div>
+                                    <div class="resource-description">FameBit, Grapevine, or AspireIQ for finding brand partnerships.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">👥 Community Platforms</div>
+                                    <div class="resource-description">Discord, Circle, or Mighty Networks for building engaged communities.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="roadmap-purple" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🗺️ Business Strategy</h4>
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                                <p><strong>Revenue Diversification:</strong> Add sponsorships, memberships, and multiple income streams.</p>
+                                <p style="margin: 15px 0;"><strong>Network Building:</strong> Collaborate with peers. Attend industry events. Build relationships.</p>
+                                <p><strong>Content Innovation:</strong> Experiment with new formats. Stay ahead of trends in your niche.</p>
+                            </div>
+                            <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                <strong>🏆 Belt Test:</strong> Create a content series that consistently performs well over 6+ episodes.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brown Belt -->
+            <div class="belt-card" data-belt="brown">
+                <div class="belt-header">
+                    <div class="belt-stripe brown-belt"></div>
+                    <h2 class="belt-title">Brown Belt</h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <p class="belt-subtitle">"Mastering Your Craft"</p>
+                
+                <div class="belt-summary">
+                    <div class="milestone-summary">
+                        <div class="summary-title">🎯 Target</div>
+                        <p>100,000-1,000,000 subscribers<br>Multiple revenue streams</p>
+                    </div>
+                    <div class="progress-summary">
+                        <div class="summary-title">📈 Focus</div>
+                        <p>Authority building<br>Team & systems</p>
+                    </div>
+                </div>
+
+                <div class="belt-details">
+                    <div class="details-content">
+                        <div class="tabs">
+                            <button class="tab active" onclick="showTab(this, 'skills-brown')">Skills</button>
+                            <button class="tab" onclick="showTab(this, 'resources-brown')">Resources</button>
+                            <button class="tab" onclick="showTab(this, 'roadmap-brown')">Roadmap</button>
+                        </div>
+
+                        <div id="skills-brown" class="tab-content active">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Mastery Skills</h4>
+                            <ul class="skills-checklist">
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Establish thought leadership and industry influence</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Build and manage a professional team</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Develop advanced business strategy (products, courses, consulting)</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Achieve cross-platform dominance</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Mentor and elevate other creators</span>
+                                </li>
+                            </ul>
+                            <div style="margin-top: 20px;">
+                                <span class="achievement-badge">👑 Thought Leader</span>
+                                <span class="achievement-badge">👥 Team Built</span>
+                                <span class="achievement-badge">🏆 Authority Status</span>
+                            </div>
+                        </div>
+
+                        <div id="resources-brown" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🛠️ Enterprise Tools</h4>
+                            <div class="resource-grid">
+                                <div class="resource-card">
+                                    <div class="resource-title">👥 Team Management</div>
+                                    <div class="resource-description">Asana, Monday.com, or Slack for managing editors, designers, and assistants.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">📚 Course Creation</div>
+                                    <div class="resource-description">Teachable, Thinkific, or Kajabi for creating and selling online courses.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">💼 Business Tools</div>
+                                    <div class="resource-description">CRM systems, accounting software, and legal support for business operations.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">🎤 Speaking & Events</div>
+                                    <div class="resource-description">Conference speaking opportunities and industry event participation.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="roadmap-brown" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🗺️ Authority Building</h4>
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                                <p><strong>Industry Leadership:</strong> Speak at conferences, write industry articles, become a go-to expert.</p>
+                                <p style="margin: 15px 0;"><strong>Business Empire:</strong> Launch products, courses, or services that serve your audience.</p>
+                                <p><strong>Legacy Building:</strong> Mentor others, contribute to the creator economy, build lasting impact.</p>
+                            </div>
+                            <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                <strong>🏆 Belt Test:</strong> Launch a successful product/service that serves your audience beyond YouTube.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Black Belt -->
+            <div class="belt-card" data-belt="black">
+                <div class="belt-header">
+                    <div class="belt-stripe black-belt"></div>
+                    <h2 class="belt-title">Black Belt</h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <p class="belt-subtitle">"Master of the Platform"</p>
+                
+                <div class="belt-summary">
+                    <div class="milestone-summary">
+                        <div class="summary-title">🎯 Target</div>
+                        <p>1,000,000+ subscribers<br>Significant cultural impact</p>
+                    </div>
+                    <div class="progress-summary">
+                        <div class="summary-title">📈 Focus</div>
+                        <p>Platform mastery<br>Industry influence</p>
+                    </div>
+                </div>
+
+                <div class="belt-details">
+                    <div class="details-content">
+                        <div class="tabs">
+                            <button class="tab active" onclick="showTab(this, 'skills-black')">Mastery</button>
+                            <button class="tab" onclick="showTab(this, 'resources-black')">Legacy</button>
+                            <button class="tab" onclick="showTab(this, 'roadmap-black')">Impact</button>
+                        </div>
+
+                        <div id="skills-black" class="tab-content active">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Master Level Skills</h4>
+                            <ul class="skills-checklist">
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Drive industry trends and influence platform direction</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Build lasting business empire around your brand</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Create systems that operate without constant input</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Teach and elevate the next generation of creators</span>
+                                </li>
+                                <li class="skill-item">
+                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
+                                    <span>Adapt and stay relevant through platform changes</span>
+                                </li>
+                            </ul>
+                            <div style="margin-top: 20px;">
+                                <span class="achievement-badge">🌟 Platform Master</span>
+                                <span class="achievement-badge">🔥 Trendsetter</span>
+                                <span class="achievement-badge">🎓 Mentor</span>
+                            </div>
+                        </div>
+
+                        <div id="resources-black" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🛠️ Master Resources</h4>
+                            <div class="resource-grid">
+                                <div class="resource-card">
+                                    <div class="resource-title">🏢 Business Empire</div>
+                                    <div class="resource-description">Multiple companies, investment portfolios, and diversified business interests.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">🎓 Education Platforms</div>
+                                    <div class="resource-description">Your own academy, masterclasses, and educational content empire.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">🌍 Global Influence</div>
+                                    <div class="resource-description">International reach, cultural impact, and cross-cultural content creation.</div>
+                                </div>
+                                <div class="resource-card">
+                                    <div class="resource-title">🚀 Innovation Labs</div>
+                                    <div class="resource-description">Experimental projects, new platform testing, and future content formats.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="roadmap-black" class="tab-content">
+                            <h4 style="margin-bottom: 15px; color: #2c3e50;">🗺️ Legacy & Impact</h4>
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                                <p><strong>Cultural Impact:</strong> Your content has meaningfully changed lives and influenced culture.</p>
+                                <p style="margin: 15px 0;"><strong>Industry Evolution:</strong> You've helped shape the creator economy and platform development.</p>
+                                <p><strong>Next Generation:</strong> Your influence extends beyond content to teaching and inspiring others.</p>
+                            </div>
+                            <div style="margin-top: 20px; padding: 15px; background: #d4edda; border-radius: 8px; border-left: 4px solid #28a745;">
+                                <strong>🏆 Black Belt Achievement:</strong> Your content has meaningfully impacted thousands of lives and created lasting value beyond entertainment.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stripe-system">
+            <h3>🏆 Stripe System - Track Your Progress</h3>
+            <p style="margin-bottom: 15px;">Each belt has 4 stripes to mark progression between ranks:</p>
+            
+            <div class="stripe-indicators">
+                <div class="stripe"></div>
+                <div class="stripe"></div>
+                <div class="stripe"></div>
+                <div class="stripe"></div>
+            </div>
+            
+            <div style="text-align: left; max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                <p><strong>🥇 1st Stripe:</strong> Hit the subscriber milestone</p>
+                <p><strong>🥈 2nd Stripe:</strong> Master 2/5 key skills</p>
+                <p><strong>🥉 3rd Stripe:</strong> Master 4/5 key skills</p>
+                <p><strong>🏆 4th Stripe:</strong> Complete the belt test + mentor someone at a lower belt</p>
+            </div>
+        </div>
+
+        <div class="motivation-quote">
+            "Like jiu-jitsu, some will progress faster than others, and there's honor in every belt. The goal isn't just the destination—it's becoming the type of creator who deserves that belt through consistent practice, learning, and serving your audience. Each belt represents not just numbers, but the development of character, skill, and impact. Keep rolling! 🎬🥋"
+        </div>
+
+        <div class="footer">
+            <p>Created with ❤️ for the YouTube creator community</p>
+            <a href="https://github.com/jrmatos/youtube-belt-system" class="github-link" target="_blank">
+                ⭐ Star on GitHub
+            </a>
+            <p style="margin-top: 15px; opacity: 0.8;">
+                YouTube Jiu-Jitsu Belt System - Your interactive roadmap to content mastery
+            </p>
+        </div>
     </div>
 
-    <!-- White Belt -->
-    <div class="belt-section no-break">
-        <div class="belt-header">
-            <div class="belt-stripe white-belt"></div>
-            <h2 class="belt-title">White Belt</h2>
-        </div>
-        <p class="belt-subtitle">"First Steps on the Mat"</p>
-        
-        <div class="content-grid">
-            <div class="milestone">
-                <div class="section-title">Milestone:</div>
-                <p>0-1,000 subscribers<br>10+ videos published</p>
-            </div>
+    <script>
+        // Belt expansion functionality
+        document.querySelectorAll('.belt-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Don't toggle if clicking on tabs, checkboxes, or other interactive elements
+                if (e.target.closest('.tabs') || e.target.closest('.skill-checkbox')) {
+                    return;
+                }
+                
+                this.classList.toggle('expanded');
+                updateProgress();
+            });
+        });
 
-            <div class="skills">
-                <div class="section-title">Skills Mastered:</div>
-                <ul>
-                    <li>Consistent upload schedule (weekly/bi-weekly)</li>
-                    <li>Basic video editing and audio quality</li>
-                    <li>Understanding your niche and target audience</li>
-                    <li>Creating thumbnails and titles</li>
-                    <li>Learning YouTube Studio basics</li>
-                </ul>
-            </div>
+        // Tab functionality
+        function showTab(tabElement, targetId) {
+            const parentCard = tabElement.closest('.belt-card');
+            
+            // Remove active class from all tabs and contents in this card
+            parentCard.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            parentCard.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab and target content
+            tabElement.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+        }
 
-            <div class="belt-test">
-                <div class="section-title">Belt Test:</div>
-                <p>Successfully maintain uploads for 3 months straight</p>
-            </div>
-        </div>
-    </div>
+        // Skill checkbox functionality with persistence
+        function toggleSkill(checkbox) {
+            checkbox.classList.toggle('checked');
+            saveProgress();
+            updateProgress();
+        }
 
-    <!-- Blue Belt -->
-    <div class="belt-section no-break">
-        <div class="belt-header">
-            <div class="belt-stripe blue-belt"></div>
-            <h2 class="belt-title">Blue Belt</h2>
-        </div>
-        <p class="belt-subtitle">"Building Your Foundation"</p>
-        
-        <div class="content-grid">
-            <div class="milestone">
-                <div class="section-title">Milestone:</div>
-                <p>1,000-10,000 subscribers<br>Monetization enabled</p>
-            </div>
+        // Progress tracking
+        function updateProgress() {
+            const totalSkills = document.querySelectorAll('.skill-checkbox').length;
+            const checkedSkills = document.querySelectorAll('.skill-checkbox.checked').length;
+            const progressPercentage = Math.round((checkedSkills / totalSkills) * 100);
+            
+            document.getElementById('overallProgress').style.width = progressPercentage + '%';
+            document.getElementById('progressText').textContent = progressPercentage + '%';
+        }
 
-            <div class="skills">
-                <div class="section-title">Skills Mastered:</div>
-                <ul>
-                    <li>Community engagement (responding to comments consistently)</li>
-                    <li>Basic SEO and keyword research</li>
-                    <li>Improved production value (lighting, framing, editing flow)</li>
-                    <li>First viral video (relative to your size)</li>
-                    <li>Building email list or secondary platform presence</li>
-                </ul>
-            </div>
+        // Local storage for progress persistence
+        function saveProgress() {
+            const checkedSkills = [];
+            document.querySelectorAll('.skill-checkbox.checked').forEach((checkbox, index) => {
+                const skillText = checkbox.nextElementSibling.textContent;
+                checkedSkills.push(skillText);
+            });
+            localStorage.setItem('youtubeBeltProgress', JSON.stringify(checkedSkills));
+        }
 
-            <div class="belt-test">
-                <div class="section-title">Belt Test:</div>
-                <p>Achieve 1,000 true fans who regularly engage with your content</p>
-            </div>
-        </div>
-    </div>
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('youtubeBeltProgress');
+            if (savedProgress) {
+                const checkedSkills = JSON.parse(savedProgress);
+                document.querySelectorAll('.skill-checkbox').forEach(checkbox => {
+                    const skillText = checkbox.nextElementSibling.textContent;
+                    if (checkedSkills.includes(skillText)) {
+                        checkbox.classList.add('checked');
+                    }
+                });
+                updateProgress();
+            }
+        }
 
-    <!-- Purple Belt -->
-    <div class="belt-section no-break">
-        <div class="belt-header">
-            <div class="belt-stripe purple-belt"></div>
-            <h2 class="belt-title">Purple Belt</h2>
-        </div>
-        <p class="belt-subtitle">"Finding Your Flow"</p>
-        
-        <div class="content-grid">
-            <div class="milestone">
-                <div class="section-title">Milestone:</div>
-                <p>10,000-100,000 subscribers<br>Sustainable income</p>
-            </div>
+        // Smooth scrolling for navigation
+        function scrollToBelt(beltName) {
+            const element = document.querySelector(`[data-belt="${beltName}"]`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                element.classList.add('expanded');
+            }
+        }
 
-            <div class="skills">
-                <div class="section-title">Skills Mastered:</div>
-                <ul>
-                    <li>Advanced analytics interpretation and strategy pivots</li>
-                    <li>Collaboration with other creators</li>
-                    <li>Diversified content formats (shorts, long-form, live streams)</li>
-                    <li>Brand partnerships and sponsorship deals</li>
-                    <li>Community building (Discord, membership, etc.)</li>
-                </ul>
-            </div>
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            
+            // Add some entrance animations
+            const cards = document.querySelectorAll('.belt-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = (index * 0.1) + 's';
+                card.style.animation = 'slideInUp 0.6s ease forwards';
+            });
+        });
 
-            <div class="belt-test">
-                <div class="section-title">Belt Test:</div>
-                <p>Create a content series that consistently performs well over 6+ episodes</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Brown Belt -->
-    <div class="belt-section no-break">
-        <div class="belt-header">
-            <div class="belt-stripe brown-belt"></div>
-            <h2 class="belt-title">Brown Belt</h2>
-        </div>
-        <p class="belt-subtitle">"Mastering Your Craft"</p>
-        
-        <div class="content-grid">
-            <div class="milestone">
-                <div class="section-title">Milestone:</div>
-                <p>100,000-1,000,000 subscribers<br>Multiple revenue streams</p>
-            </div>
-
-            <div class="skills">
-                <div class="section-title">Skills Mastered:</div>
-                <ul>
-                    <li>Thought leadership in your niche</li>
-                    <li>Team building (editors, thumbnail designers, assistants)</li>
-                    <li>Advanced business strategy (products, courses, consulting)</li>
-                    <li>Cross-platform dominance (TikTok, Instagram, podcast, etc.)</li>
-                    <li>Mentoring other creators</li>
-                </ul>
-            </div>
-
-            <div class="belt-test">
-                <div class="section-title">Belt Test:</div>
-                <p>Launch a successful product/service that serves your audience beyond YouTube</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Black Belt -->
-    <div class="belt-section no-break">
-        <div class="belt-header">
-            <div class="belt-stripe black-belt"></div>
-            <h2 class="belt-title">Black Belt</h2>
-        </div>
-        <p class="belt-subtitle">"Master of the Platform"</p>
-        
-        <div class="content-grid">
-            <div class="milestone">
-                <div class="section-title">Milestone:</div>
-                <p>1,000,000+ subscribers<br>Significant cultural impact</p>
-            </div>
-
-            <div class="skills">
-                <div class="section-title">Skills Mastered:</div>
-                <ul>
-                    <li>Industry influence and trend-setting</li>
-                    <li>Building lasting business empire around your brand</li>
-                    <li>Creating systems that work without your constant input</li>
-                    <li>Teaching and elevating other creators</li>
-                    <li>Adapting to platform changes and staying relevant long-term</li>
-                </ul>
-            </div>
-
-            <div class="belt-test">
-                <div class="section-title">Black Belt Achievement:</div>
-                <p>Your content has meaningfully impacted thousands of lives and created lasting value beyond entertainment</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="stripe-system no-break">
-        <h3>🏆 Stripe System (Between Belts)</h3>
-        <p>Each belt has 4 stripes to mark progression:</p>
-        
-        <div class="stripe-indicators">
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-        </div>
-        
-        <div class="stripe-details">
-            <p><strong>1st Stripe:</strong> Hit the subscriber milestone</p>
-            <p><strong>2nd Stripe:</strong> Master 2/5 key skills</p>
-            <p><strong>3rd Stripe:</strong> Master 4/5 key skills</p>
-            <p><strong>4th Stripe:</strong> Complete the belt test + mentor someone at a lower belt</p>
-        </div>
-    </div>
-
-    <div class="motivation-quote no-break">
-        <p>"Like jiu-jitsu, some will progress faster than others, and there's honor in every belt. The goal isn't just the destination—it's becoming the type of creator who deserves that belt through consistent practice, learning, and serving your audience. Each belt represents not just numbers, but the development of character, skill, and impact. Keep rolling! 🎬🥋"</p>
-    </div>
-
-    <div class="footer">
-        <p>YouTube Jiu-Jitsu Belt System - Your roadmap to content mastery</p>
-    </div>
+        // CSS for entrance animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
