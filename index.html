@@ -47,43 +47,7 @@
             margin-bottom: 30px;
         }
 
-        .progress-overview {
-            background: rgba(255,255,255,0.95);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        }
 
-        .overall-progress {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .progress-label {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .progress-bar {
-            background: #e9ecef;
-            border-radius: 10px;
-            height: 12px;
-            overflow: hidden;
-            flex-grow: 1;
-            margin: 0 15px;
-        }
-
-        .progress-fill {
-            background: linear-gradient(90deg, #28a745, #20c997);
-            height: 100%;
-            width: 0%;
-            transition: width 0.8s ease;
-            border-radius: 10px;
-        }
 
         .belt-grid {
             display: grid;
@@ -297,42 +261,24 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .skills-checklist {
+        .skills-list {
             list-style: none;
             padding: 0;
         }
 
         .skill-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #ecf0f1;
-        }
-
-        .skill-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #28a745;
-            border-radius: 4px;
-            margin-right: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
             position: relative;
+            padding-left: 20px;
         }
 
-        .skill-checkbox.checked {
-            background: #28a745;
-        }
-
-        .skill-checkbox.checked::after {
-            content: '✓';
+        .skill-item::before {
+            content: "✓";
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
+            left: 0;
+            color: #28a745;
             font-weight: bold;
-            font-size: 14px;
         }
 
         .resource-grid {
@@ -478,19 +424,6 @@
         <div class="header">
             <h1>🥋 YouTube Jiu-Jitsu Belt System 🎬</h1>
             <p>Master the platform one belt at a time - Your interactive roadmap to content creation mastery</p>
-            
-            <div class="progress-overview">
-                <div class="overall-progress">
-                    <span class="progress-label">Overall Progress:</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="overallProgress"></div>
-                    </div>
-                    <span id="progressText">0%</span>
-                </div>
-                <p style="font-size: 0.9rem; color: #7f8c8d; margin-top: 10px;">
-                    Click on any belt to explore detailed guides, resources, and track your progress
-                </p>
-            </div>
         </div>
 
         <div class="belt-grid">
@@ -524,25 +457,20 @@
 
                         <div id="skills-white" class="tab-content active">
                             <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Skills to Master</h4>
-                            <ul class="skills-checklist">
+                            <ul class="skills-list">
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Establish consistent upload schedule (weekly/bi-weekly)</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Master basic video editing and ensure good audio quality</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Define your niche and understand your target audience</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Create compelling thumbnails and titles</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Learn YouTube Studio basics and analytics</span>
                                 </li>
                             </ul>
@@ -620,25 +548,20 @@
 
                         <div id="skills-blue" class="tab-content active">
                             <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Skills to Master</h4>
-                            <ul class="skills-checklist">
+                            <ul class="skills-list">
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Master community engagement and respond to all comments</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Learn basic SEO and keyword research for video optimization</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Significantly improve production value (lighting, framing, editing)</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Create your first viral video (relative to your channel size)</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Build email list or presence on secondary platforms</span>
                                 </li>
                             </ul>
@@ -716,25 +639,20 @@
 
                         <div id="skills-purple" class="tab-content active">
                             <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Advanced Skills</h4>
-                            <ul class="skills-checklist">
+                            <ul class="skills-list">
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Master advanced analytics interpretation and strategic pivots</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Build successful collaborations with other creators</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Diversify content formats (shorts, long-form, live streams)</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Secure brand partnerships and sponsorship deals</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Build thriving community (Discord, membership, etc.)</span>
                                 </li>
                             </ul>
@@ -812,25 +730,20 @@
 
                         <div id="skills-brown" class="tab-content active">
                             <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Mastery Skills</h4>
-                            <ul class="skills-checklist">
+                            <ul class="skills-list">
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Establish thought leadership and industry influence</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Build and manage a professional team</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Develop advanced business strategy (products, courses, consulting)</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Achieve cross-platform dominance</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Mentor and elevate other creators</span>
                                 </li>
                             </ul>
@@ -908,25 +821,20 @@
 
                         <div id="skills-black" class="tab-content active">
                             <h4 style="margin-bottom: 15px; color: #2c3e50;">📚 Master Level Skills</h4>
-                            <ul class="skills-checklist">
+                            <ul class="skills-list">
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Drive industry trends and influence platform direction</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Build lasting business empire around your brand</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Create systems that operate without constant input</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Teach and elevate the next generation of creators</span>
                                 </li>
                                 <li class="skill-item">
-                                    <div class="skill-checkbox" onclick="toggleSkill(this)"></div>
                                     <span>Adapt and stay relevant through platform changes</span>
                                 </li>
                             </ul>
@@ -1013,13 +921,12 @@
         // Belt expansion functionality
         document.querySelectorAll('.belt-card').forEach(card => {
             card.addEventListener('click', function(e) {
-                // Don't toggle if clicking on tabs, checkboxes, or other interactive elements
-                if (e.target.closest('.tabs') || e.target.closest('.skill-checkbox')) {
+                // Don't toggle if clicking on tabs or other interactive elements
+                if (e.target.closest('.tabs')) {
                     return;
                 }
                 
                 this.classList.toggle('expanded');
-                updateProgress();
             });
         });
 
@@ -1036,47 +943,6 @@
             document.getElementById(targetId).classList.add('active');
         }
 
-        // Skill checkbox functionality with persistence
-        function toggleSkill(checkbox) {
-            checkbox.classList.toggle('checked');
-            saveProgress();
-            updateProgress();
-        }
-
-        // Progress tracking
-        function updateProgress() {
-            const totalSkills = document.querySelectorAll('.skill-checkbox').length;
-            const checkedSkills = document.querySelectorAll('.skill-checkbox.checked').length;
-            const progressPercentage = Math.round((checkedSkills / totalSkills) * 100);
-            
-            document.getElementById('overallProgress').style.width = progressPercentage + '%';
-            document.getElementById('progressText').textContent = progressPercentage + '%';
-        }
-
-        // Local storage for progress persistence
-        function saveProgress() {
-            const checkedSkills = [];
-            document.querySelectorAll('.skill-checkbox.checked').forEach((checkbox, index) => {
-                const skillText = checkbox.nextElementSibling.textContent;
-                checkedSkills.push(skillText);
-            });
-            localStorage.setItem('youtubeBeltProgress', JSON.stringify(checkedSkills));
-        }
-
-        function loadProgress() {
-            const savedProgress = localStorage.getItem('youtubeBeltProgress');
-            if (savedProgress) {
-                const checkedSkills = JSON.parse(savedProgress);
-                document.querySelectorAll('.skill-checkbox').forEach(checkbox => {
-                    const skillText = checkbox.nextElementSibling.textContent;
-                    if (checkedSkills.includes(skillText)) {
-                        checkbox.classList.add('checked');
-                    }
-                });
-                updateProgress();
-            }
-        }
-
         // Smooth scrolling for navigation
         function scrollToBelt(beltName) {
             const element = document.querySelector(`[data-belt="${beltName}"]`);
@@ -1088,8 +954,6 @@
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            loadProgress();
-            
             // Add some entrance animations
             const cards = document.querySelectorAll('.belt-card');
             cards.forEach((card, index) => {
